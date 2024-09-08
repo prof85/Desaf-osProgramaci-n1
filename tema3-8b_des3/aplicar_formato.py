@@ -4,9 +4,16 @@ import time
 from os import system
 
 # LIMPIAR PANTALLA
-system("clear") # linux
+'''
+Limpiar la pantalla 'cls' para Windows y 'clear' para sistemas basados en Linux.
+'''
+def limpiar_pantalla():
+    system("cls" if os.name == "nt" else "clear")
 
 # OPCIONES DE FORMATO
+'''
+Muestra el menú de opciones para aplicar formato al texto.
+'''
 def mostrar_menu(): # Función para mostrar el menú de opciones
     print("\nSelecciona el formato a aplicar:\n")
     print("1. Negrita")
@@ -20,7 +27,19 @@ def mostrar_menu(): # Función para mostrar el menú de opciones
     print("0. Salir")
 
 # MOSTRAR LOS FORMATOS REALIZADOS O NO
-def mostrar_todo(texto, color,colorf): 
+'''
+Muestra todos los formatos aplicados al texto introducido.
+Salvo el color del texto y de fondo, el resto se realizan sin intervención del usuario
+'''
+
+def mostrar_todo(texto,color,colorf): 
+'''
+Muestra todos los formatos que se pueden o se aplicaron al texto.
+Args:
+    texto (str): El texto a formatear.
+    codigo_texto (int): El código del color del texto.
+    codigo_fondo (int): El código del color del fondo.
+'''
         
     print("------------ TODOS LOS FORMATOS ------------\n")        
     print(f"\nTexto a formatear: {texto}") # Imprime el texto a formatear
@@ -32,14 +51,17 @@ def mostrar_todo(texto, color,colorf):
     print("\nTexto en mayúscula:", ft.a_mayusculas(texto)) # Imprime el texto en mayúscula
     print("\nTexto en minúscula:", ft.a_minusculas(texto)) # Imprime el texto en minúscula
 
-# PANTALLA INICIAL
+# FUNCIÓN PRINCIPAL
 def menu():
-    
+'''
+Función principal que ejecuta el menú para aplicar formatos al texto.
+'''
+    limpiar_pantalla()
     print("------------ FORMATEAR TEXTO ------------\n")
     texto = input("Ingresa el texto que deseas formatear: ")
 
     while True:
-        system("clear")
+        limpiar_pantalla()
         mostrar_menu() # Llama a la función
         opcion = input("\nIngresa el número de la opción deseada: ")
 
@@ -66,10 +88,11 @@ def menu():
         elif opcion == "0":
             print("\nSaliendo del programa...")
             break
-           
-        input("\nPresione enter para continuar...")
-       
+        else:
+            print("\nOpción no válida. Por favor, elige una opción del menú.")
         
+        input("\nPresione enter para continuar...")
+               
 # INICIAR      
 menu()
 
